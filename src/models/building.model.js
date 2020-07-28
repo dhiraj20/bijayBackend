@@ -1,15 +1,25 @@
+const { getUser } = require('./user.model');
+
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var buildingSchema = new Schema({
+    name: String,
     area: String,
+    size: String,
+    facing: String,
     pricing: Number,
+    code: String,
     description: String,
     image_url: String,
     location: String,
     type: {
         type: String,
         enum: ['plan', 'elevation', 'interior_design']
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
 });
 
@@ -20,11 +30,13 @@ const getBuilding = () => {
 }
 
 const createBuilding = payload => {
-    return building.create(payload);
+    return getBuilding().then(response => {
+        payload.code = 'MN-' + response.length;
+        return building.create(payload);
+    });
 }
 
-const getBuildingById = buildingId => {
-    console.log('buildingId', buildingId)
+const getBuildingById = (buildingId) => {
     return building.findById(buildingId);
 }
 

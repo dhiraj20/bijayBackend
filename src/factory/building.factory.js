@@ -14,9 +14,12 @@ const getbuilding = (request, h) => {
 
 const createBuilding = (request, h) => {
     const payload = {
+        nname: request.payload.name,
         area: request.payload.area,
-        description: request.payload.description,
+        size: request.payload.size,
+        facing: request.payload.facing,
         pricing: request.payload.pricing,
+        description: request.payload.description,
         location: request.payload.location,
         image_url: request.payload.image_url,
         type: request.payload.type
@@ -32,7 +35,7 @@ const createBuilding = (request, h) => {
 
 const getBuildingById = (request, h) => {
     const buildingId = request.params.id;
-    return getBuildingById(request.params.id).then(res => {
+    return building.getBuildingById(buildingId).then(res => {
         if (res) {
             return res;
         }
@@ -43,7 +46,7 @@ const getBuildingById = (request, h) => {
 
 const getBuildingByType = (request, h) => {
     const type = request.params.type;
-    return getBuildingByType(type).then(res => {
+    return building.getBuildingByType(type).then(res => {
         if (res) {
             return res;
         }
