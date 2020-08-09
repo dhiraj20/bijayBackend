@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 const createBuildingValidation = {
     payload: Joi.object({
-        name: Joi.string().required().default('Name'),
+        design_name: Joi.string().required().default('Name'),
         area: Joi.string().required().default('300 sq.ft'),
         size: Joi.string().required().default('200x200x200'),
         facing: Joi.string().required().default('East'),

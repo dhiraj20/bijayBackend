@@ -10,7 +10,13 @@ const Hapi = require('hapi'),
 
 const server = Hapi.server({
     port: 3000,
-    host: 'localhost'
+    host: 'localhost',
+    routes: {
+        cors: {
+            origin: ['*'], // an array of origins or 'ignore'    
+            credentials: true // boolean - 'Access-Control-Allow-Credentials'
+        }
+    }
 });
 
 for (const route in routes) {

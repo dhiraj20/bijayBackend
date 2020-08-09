@@ -14,7 +14,7 @@ const getbuilding = (request, h) => {
 
 const createBuilding = (request, h) => {
     const payload = {
-        nname: request.payload.name,
+        design_name: request.payload.design_name,
         area: request.payload.area,
         size: request.payload.size,
         facing: request.payload.facing,
@@ -26,7 +26,7 @@ const createBuilding = (request, h) => {
     }
     return building.createBuilding(payload).then(res => {
         if (res) {
-            return { message: 'User added succesfully', data: res }
+            return { message: 'Building added succesfully', data: res }
         }
     }).catch(err => {
         return { error: err };
@@ -46,6 +46,8 @@ const getBuildingById = (request, h) => {
 
 const getBuildingByType = (request, h) => {
     const type = request.params.type;
+    const query = request.query;
+    console.log(query);
     return building.getBuildingByType(type).then(res => {
         if (res) {
             return res;

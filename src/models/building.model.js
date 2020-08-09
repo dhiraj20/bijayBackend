@@ -4,7 +4,7 @@ const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var buildingSchema = new Schema({
-    name: String,
+    design_name: String,
     area: String,
     size: String,
     facing: String,
@@ -40,8 +40,8 @@ const getBuildingById = (buildingId) => {
     return building.findById(buildingId);
 }
 
-const getBuildingByType = type => {
-    return building.find({ type: type });
+const getBuildingByType = (type, skip = 0, limit = 0) => {
+    return building.find({ type: type }).sort().skip(skip).limit(limit);
 }
 
 module.exports = {
