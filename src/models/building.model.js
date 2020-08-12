@@ -38,8 +38,28 @@ const getBuildingById = (buildingId) => {
     return building.findById(buildingId);
 }
 
-const getBuildingByType = (type, skip = 0, limit = 0) => {
-    return building.find({ type: type }).sort().skip(skip).limit(limit);
+const getBuildingByType = (type, query) => {
+    const sortValue = query.sort;
+    const skipValue = query.skip || 0;
+    const limitValue = query.limit || 0;
+    let queryObject = {
+        type: type
+    }
+    if (query.minPrice && query.maxPrice) {
+        queryObject.pricing = { $gt: query.minPrice, $lt: query.maxPrice }
+    } else {
+        if (query.minPrice) {
+            queryObject.pricing = { $gt: query.minPrice }
+        }
+        if (query.maxPrice) {
+            queryObject.pricing = { $lt: query.maxPrice }
+        }
+    }
+    if (sortValue) {
+        return building.find(queryObject).skip(skipValue).limit(limitValue).sort({ pricing: sortValue });
+    } else {
+        return building.find(queryObject).skip(skipValue).limit(limitValue);
+    }
 }
 
 module.exports = {

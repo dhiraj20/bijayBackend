@@ -48,7 +48,7 @@ const getBuildingByType = (request, h) => {
     const type = request.params.type;
     const query = request.query;
     console.log(query);
-    return building.getBuildingByType(type).then(res => {
+    return building.getBuildingByType(type, query).then(res => {
         if (res) {
             return res;
         }

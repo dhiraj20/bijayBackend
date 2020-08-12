@@ -23,7 +23,12 @@ const getBuildingByIdValidation = {
 const getBuildingByTypeValidation = {
     params: {
         type: Joi.string()
-    }
+    },
+    query: {
+        sort: Joi.number().valid(1, -1),
+        minPrice: Joi.number(),
+        maxPrice: Joi.number()
+      }
 }
 
 module.exports = {
