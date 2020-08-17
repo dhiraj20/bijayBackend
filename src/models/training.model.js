@@ -8,6 +8,10 @@ var trainingSchema = new Schema({
     course_price: Number,
     course_detail_link: String,
     image_url: String,
+    isShow: {
+        type: Boolean,
+        default: false
+    },
     createdAt: {
         type: Date,
         default: Date.now

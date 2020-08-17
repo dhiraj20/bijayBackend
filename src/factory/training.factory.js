@@ -5,7 +5,7 @@ const getTraining = (request, h) => {
         if (!res.length) {
             return { message: 'No data is available' };
         }
-        return res;
+        return { message: 'A training data', data: res };
     })
         .catch(err => {
             return { error: err };
@@ -19,6 +19,7 @@ const createTraining = (request, h) => {
         start_date: request.payload.start_date,
         course_price: request.payload.course_price,
         course_detail_link: request.payload.course_detail_link,
+        image_url: request.payload.image_url,
     }
     return training.createTraining(payload).then(res => {
         if (res) {

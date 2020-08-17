@@ -5,7 +5,7 @@ const getbuilding = (request, h) => {
         if (!res.length) {
             return { message: 'No data is available' };
         }
-        return res;
+        return { message: 'Building Data', data: res };
     })
         .catch(err => {
             return { error: err };
@@ -37,7 +37,7 @@ const getBuildingById = (request, h) => {
     const buildingId = request.params.id;
     return building.getBuildingById(buildingId).then(res => {
         if (res) {
-            return res;
+            return { message: 'A building data', data: res };
         }
     }).catch(err => {
         return { error: err };
@@ -47,10 +47,9 @@ const getBuildingById = (request, h) => {
 const getBuildingByType = (request, h) => {
     const type = request.params.type;
     const query = request.query;
-    console.log(query);
     return building.getBuildingByType(type, query).then(res => {
         if (res) {
-            return res;
+            return { message: 'A building list by type', data: res };
         }
     }).catch(err => {
         return { error: err };
