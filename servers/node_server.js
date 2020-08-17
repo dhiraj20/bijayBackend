@@ -9,8 +9,8 @@ const Hapi = require('hapi'),
 
 
 const server = Hapi.server({
-    port: 3000,
-    host: 'localhost',
+    port: process.env.PORT || 3000,
+    host: process.env.HOST,
     routes: {
         cors: {
             origin: ['*'], // an array of origins or 'ignore'    
@@ -85,8 +85,8 @@ process.on('unhandledRejection', (err) => {
 });
 
 init().then(server => {
-        console.log('Server running at:', server.info.uri);
-    })
+    console.log('Server running at:', server.info.uri);
+})
     .catch(error => {
         console.log(error);
     });
