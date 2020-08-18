@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const connection_uri = 'mongodb+srv://dhiraj:dhiraj@cluster0.ocvoq.mongodb.net/test?retryWrites=true&w=majority';
 
 exports.mongoConnection = function () {
-    mongoose.connect(connection_uri, { useNewUrlParser: true, useCreateIndex: true }, (error) => {
+    mongoose.connect(process.env.MongoDB_URL || connection_uri, { useNewUrlParser: true, useCreateIndex: true }, (error) => {
         if (!error) {
             console.log('mongodb default connection open to mongodb://27017');
         } else {

@@ -10,7 +10,7 @@ const Hapi = require('hapi'),
 
 const server = Hapi.server({
     port: process.env.PORT || 3000,
-    host: process.env.HOST,
+    host: process.env.HOST || 'localhost',
     routes: {
         cors: {
             origin: ['*'], // an array of origins or 'ignore'    
